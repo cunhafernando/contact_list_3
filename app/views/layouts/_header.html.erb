@@ -6,9 +6,12 @@
   
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to  'Nova Conta', new_user_path, class: 'nav-link' %>
-      </li>
+      <% if !user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to  'Nova Conta', new_user_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+      
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
@@ -17,9 +20,24 @@
       </li>
     </ul>
     <ul class="navbar-nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Entrar</a>
-        </li>
+        <% if !user_signed_in? %>
+          <li class="nav-item">
+              <%= link_to  'Entrar', entrar_path, class: 'nav-link' %>
+          </li>
+          <% else %>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                bem vindo, <%= current_user.name %> <span class="caret"></span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to 'Minha Pagina', current_user, class:'dropdown-item'%>
+                <%= link_to 'Editar', '#', class:'dropdown-item' %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'Sair', sair_path, class:'dropdown-item', method: :delete %>
+              </div>
+            </li>
+        <% end %>
+        <li class="divider" role="separator"></li>
         </ul>
   </div>
 </nav>
