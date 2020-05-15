@@ -11,13 +11,6 @@
           <%= link_to  'Nova Conta', new_user_path, class: 'nav-link' %>
         </li>
       <% end %>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
     </ul>
     <ul class="navbar-nav justify-content-end">
         <% if !user_signed_in? %>
@@ -30,8 +23,8 @@
                 bem vindo, <%= current_user.name %> <span class="caret"></span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to 'Minha Pagina', current_user, class:'dropdown-item'%>
-                <%= link_to 'Editar', '#', class:'dropdown-item' %>
+                <%= link_to 'Minha Pagina', contacts_path, class:'dropdown-item'%>
+                <%= link_to 'Editar', edit_user_path(current_user), class:'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'Sair', sair_path, class:'dropdown-item', method: :delete %>
               </div>
